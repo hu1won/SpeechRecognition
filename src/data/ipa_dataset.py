@@ -135,7 +135,9 @@ class IPADataset(Dataset):
         audio_features = self._load_audio_features(item['audio_file'])
         
         # IPA 타겟 생성
-        ipa_target = self._create_ipa_target(item['text'])
+        # 새로운 매니페스트 구조 지원: expected_text -> text
+        text_field = item.get('text', item.get('expected_text', ''))
+        ipa_target = self._create_ipa_target(text_field)
         
         # IPA를 인덱스로 변환
         ipa_indices = self._ipa_to_indices(ipa_target)
@@ -144,7 +146,7 @@ class IPADataset(Dataset):
             'audio_features': audio_features,
             'ipa_target': ipa_target,
             'ipa_indices': torch.tensor(ipa_indices, dtype=torch.long),
-            'text': item['text'],
+            'text': text_field,
             'audio_file': item['audio_file'],
             'duration': item.get('duration', 0.0)
         }

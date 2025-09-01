@@ -2,8 +2,8 @@
 
 # 데이터 설정
 data:
-  train_manifest: "data/manifest_ipa_word_30_train.json"
-  val_manifest: "data/manifest_ipa_word_30_val.json"
+  train_manifest: "data/manifest_correct_word_30_train.json"
+  val_manifest: "data/manifest_correct_word_30_val.json"
   sample_rate: 16000
   max_duration: 3.0
   min_duration: 1.0
